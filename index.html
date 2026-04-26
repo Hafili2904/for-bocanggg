@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for bocang 💗</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff9eb8, #ffc2d1, #ffe6f0);
+}
+
+/* SIDE GALLERY (PC) */
+.side {
+    position: fixed;
+    top: 0;
+    width: 110px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px;
+}
+
+.left { left: 0; }
+.right { right: 0; }
+
+.side img {
+    width: 100%;
+    border-radius: 12px;
+    transform: rotate(-5deg);
+    transition: 0.3s;
+}
+
+.right img {
+    transform: rotate(5deg);
+}
+
+.side img:hover {
+    transform: scale(1.08) rotate(0deg);
+}
+
+/* MAIN */
+#main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.box {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(15px);
+    padding: 25px;
+    border-radius: 20px;
+    width: 380px;
+    max-width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+}
+
+#text {
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    background: #ff5d8f;
+    color: white;
+    cursor: pointer;
+}
+
+.choice {
+    display: none;
+}
+
+#endingImg {
+    display: none;
+    margin-top: 12px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* 📱 MOBILE FIX */
+@media (max-width: 768px) {
+
+    .side {
+        position: static;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .side img {
+        width: 70px;
+        transform: rotate(0deg);
+    }
+
+    #main {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .box {
+        width: 92%;
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ATAS (HP) / KIRI (PC) -->
+<div class="side left">
+    <img src="bocanggg/bocang 1.jpeg">
+    <img src="bocanggg/bocang 2.jpeg">
+    <img src="bocanggg/bocang 8.jpg">
+</div>
+
+<!-- MAIN -->
+<div id="main">
+    <div class="box">
+        <div id="text"></div>
+        <button onclick="nextText()">lanjut 👉</button>
+
+        <div class="choice" id="choice">
+            <button onclick="jawab('iya')">iya dong 😳</button>
+            <button onclick="jawab('nakal')">masih mikir 😭</button>
+        </div>
+
+        <img id="endingImg" src="bocanggg/bocang 7.jpeg">
+    </div>
+</div>
+
+<!-- BAWAH (HP) / KANAN (PC) -->
+<div class="side right">
+    <img src="bocanggg/bocang.jpeg">
+    <img src="bocanggg/bocang 5.jpeg">
+    <img src="bocanggg/bocang 6.jpeg">
+</div>
+
+<script>
+const texts = [
+    "heii bocanggg 😆",
+    "hari ini gimanaa? jangan capek-capek yaa",
+    "kemarin pramukanya gimana? seru apa bikin pengen pulang cepet? wkwk",
+    "sekarang lagi ngapain? lagi santai kahh",
+    "btw aku nanya dikit ya 😶",
+    "hatinya masih aku doang kan?"
+];
+
+let index = 0;
+
+function typeEffect(text, i = 0) {
+    if (i < text.length) {
+        document.getElementById("text").innerHTML += text.charAt(i);
+        setTimeout(() => typeEffect(text, i + 1), 25);
+    }
+}
+
+function nextText() {
+    const textBox = document.getElementById("text");
+    textBox.innerHTML = "";
+
+    if (index < texts.length) {
+        typeEffect(texts[index]);
+        index++;
+
+        if (index === texts.length) {
+            document.getElementById("choice").style.display = "block";
+        }
+    }
+}
+
+function jawab(pilihan) {
+    document.getElementById("choice").style.display = "none";
+
+    if (pilihan === "iya") {
+        ending();
+    } else {
+        document.getElementById("text").innerHTML = "yahh harusnya jawab iya dong 😤";
+        setTimeout(ending, 2000);
+    }
+}
+
+function ending() {
+    const textBox = document.getElementById("text");
+
+    let endingText = `oh iya bocanggg 😚  
+
+makasii yaa buat semua yang udah kamu lakuin selama ini  
+buat aku itu sesuatu yang bener-bener berkesan, dan ga bakal aku lupain 🤍  
+
+kalau sekarang aku masih belum bisa bikin kamu terkesan juga…  
+tunggu aku yaa 😌  
+
+aku pasti bakal usahain  
+inget yaa, tunggu aku  
+
+jangan sampe nanti aku belum sempet nunjukin semuanya,  
+kamu malah udah ada yang lebih baik 😤  
+
+hehe tapi serius, tunggu aku yaa 🤍`;
+
+    textBox.innerHTML = "";
+    typeEffect(endingText);
+
+    document.getElementById("endingImg").style.display = "block";
+}
+</script>
+
+</body>
+</html>
